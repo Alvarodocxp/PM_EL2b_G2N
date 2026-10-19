@@ -37,8 +37,8 @@ public enum EClube {
 	PIPOCA(30, 20),
 	CINEFILO(40, 30);
 
-	private double descontoEntrada;
-	private double descontoAdicionais;
+	double descontoEntrada;
+	double descontoAdicionais;
 
 	EClube(double descEntrada, double descAdicionais){
 		descontoEntrada = descEntrada;

@@ -41,6 +41,7 @@ public class Clube extends Ingresso {
 	 * Categoria/plano do clube associada ao ingresso.
 	 */
 	private EClube categoria;
+		
 
 	/**
 	 * Cria um ingresso de clube para o filme e sessão informados.
@@ -51,6 +52,8 @@ public class Clube extends Ingresso {
 	 */
 	public Clube(String filme, LocalDateTime sessao, EClube clube) {
 		//TODO
+		super(filme, sessao);
+		this.categoria = clube;
 	}
 
 	/**
@@ -59,7 +62,23 @@ public class Clube extends Ingresso {
 	 */
 	@Override 
 	public double valorIngresso() {
-		//TODO
-		return  0;
+		//TODO 
+		double entrada = VALOR_ENTRADA - (VALOR_ENTRADA * (categoria.descontoEntrada() / 100));
+		double total = 0;
+		if (adicionais.size() > 0){
+			for (EAdicional adicional : adicionais){
+				total += adicional.valor();
+			}
+		}
+		total = total - (total * categoria.descontoAdicionais() / 100);
+		return entrada + total;
+
 	}
 }
+
+
+// 		return switch (categoria) {
+//			case CINEFILO -> VALOR_ENTRADA - (VALOR_ENTRADA * categoria.descontoEntrada) + total - (total * categoria.descontoAdicionais);
+//          case PIPOCA -> VALOR_ENTRADA - (VALOR_ENTRADA * categoria.descontoEntrada) + total - (total * categoria.descontoAdicionais);
+//			default -> VALOR_ENTRADA + total;
+//		};

@@ -52,7 +52,14 @@ public class Regular extends Ingresso {
 	 * @return valor final do ingresso regular
 	 */
 	public double valorIngresso() {
-		//TODO
-		return  0;
+		//TODO 
+		double entrada = VALOR_ENTRADA;
+		double total = 0;
+		if (adicionais.size() > 0){
+			for (EAdicional adicional : adicionais){
+				total += adicional.valor();
+			}
+		}
+		return entrada + total;
 	}
 }
